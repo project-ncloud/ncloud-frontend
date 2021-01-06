@@ -1,41 +1,71 @@
-export const AddPiServerPanel = () => (
-  <>
-    <div className='actionBar'>
-      <div className='confirmHead purple'>Add Server</div>
-    </div>
-    <div className='list addServer' id='userPendingList'>
-      <div className='row addServerRow'></div>
+import {useState} from 'react';
 
-      <div className='row addServerRow'>
-        <label htmlFor='addServerName'>Server Name</label>
-      </div>
-      <div className='row addServerRow'>
-        <input type='text' name='addServerName' id='addServerName' />
-      </div>
+export const AddPiServerPanel = () => {
+  const [serverName, setServerName] = useState('');
+  const [serverAddress, setServerAddress] = useState('');
+  const [checked, setChecked] = useState(true);
 
-      <div className='row addServerRow'></div>
+  function addServer() {
+    console.log(serverName, serverAddress, checked);
+  }
 
-      <div className='row addServerRow'>
-        <label htmlFor='addServerAddress'>Address</label>
+  return (
+    <>
+      <div className='actionBar'>
+        <div className='confirmHead purple'>Add Server</div>
       </div>
-      <div className='row addServerRow'>
-        <input type='text' name='addServerAddress' id='addServerAddress' />
-      </div>
+      <div className='list addServer' id='userPendingList'>
+        <div className='row addServerRow'></div>
 
-      <div className='row addServerRow'></div>
+        <div className='row addServerRow'>
+          <label htmlFor='addServerName'>Server Name</label>
+        </div>
+        <div className='row addServerRow'>
+          <input
+            type='text'
+            name='addServerName'
+            id='addServerName'
+            value={serverName}
+            onChange={e => setServerName(e.target.value)}
+          />
+        </div>
 
-      <div className='row addServerRow'>Configurations</div>
-      <div className='row addServerRow'>
-        <input type='checkbox' name='addAutoStart' id='addAutoStart' />
-        <label htmlFor='addAutoStart'>Auto Start</label>
-      </div>
+        <div className='row addServerRow'></div>
 
-      <div className='row addServerRow' id='addServerStatus'></div>
-      <div className='row addServerRow buttonRow'>
-        <button className='subBg purple'>Clear</button>
-        <button>Add Server</button>
+        <div className='row addServerRow'>
+          <label htmlFor='addServerAddress'>Address</label>
+        </div>
+        <div className='row addServerRow'>
+          <input
+            type='text'
+            name='addServerAddress'
+            id='addServerAddress'
+            value={serverAddress}
+            onChange={e => setServerAddress(e.target.value)}
+          />
+        </div>
+
+        <div className='row addServerRow'></div>
+
+        <div className='row addServerRow'>Configurations</div>
+        <div className='row addServerRow'>
+          <input
+            type='checkbox'
+            name='addAutoStart'
+            id='addAutoStart'
+            checked={checked}
+            onChange={() => setChecked(x => !x)}
+          />
+          <label htmlFor='addAutoStart'>Auto Start</label>
+        </div>
+
+        <div className='row addServerRow' id='addServerStatus'></div>
+        <div className='row addServerRow buttonRow'>
+          <button className='subBg purple'>Clear</button>
+          <button onClick={addServer}>Add Server</button>
+        </div>
+        <div className='row addServerRow'></div>
       </div>
-      <div className='row addServerRow'></div>
-    </div>
-  </>
-);
+    </>
+  );
+};

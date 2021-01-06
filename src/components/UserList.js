@@ -10,7 +10,7 @@ export const UserList = ({name, role, status}) => {
       <div className='col colAction'>
         <i className='ri-close-circle-fill'></i>
         <input type='checkbox' id='enableUserX' className='checkbox' />
-        <label for='enableUserX' className='toggle'>
+        <label htmlFor='enableUserX' className='toggle'>
           <i className='ri-shut-down-line btnON'></i>
         </label>
       </div>

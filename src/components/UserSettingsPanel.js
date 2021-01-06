@@ -1,6 +1,7 @@
+import {Loading} from './Loading';
 import {UserList} from './UserList';
 
-export const UserSettingsPanel = () => {
+export const UserSettingsPanel = ({loading}) => {
   return (
     <>
       <div className='actionBar'>
@@ -25,11 +26,7 @@ export const UserSettingsPanel = () => {
         <UserList name='Indrajit Sarkar' role='Student' status='Disabled' />
         <UserList name='Surajit Guun' role='Faculty' status='Enabled' />
       </div>
-      <div className='loading hide' id='userListLoading'>
-        <div className='loadingBG'>
-          <div className='bar'></div>
-        </div>
-      </div>
+      {loading && <Loading />}
     </>
   );
 };

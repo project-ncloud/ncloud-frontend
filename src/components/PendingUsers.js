@@ -1,6 +1,7 @@
+import {Loading} from './Loading';
 import {PendingUserList} from './PendingUserList';
 
-export const PendingUsers = () => {
+export const PendingUsers = ({loading}) => {
   return (
     <>
       <div className='actionBar'>
@@ -23,11 +24,7 @@ export const PendingUsers = () => {
         <PendingUserList name='Sujay Saha' role='Student' />
         <PendingUserList name='Debabrata Barik' role='Faculty' />
       </div>
-      <div className='loading hide' id='userPendingListLoading'>
-        <div className='loadingBG'>
-          <div className='bar'></div>
-        </div>
-      </div>
+      {loading && <Loading />}
     </>
   );
 };
