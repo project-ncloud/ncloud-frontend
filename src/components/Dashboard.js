@@ -1,23 +1,26 @@
-export const Dashboard = () => {
-  // TODO:
-  function confirmPower() {}
-  function userSettingList() {}
-  function userPendingListPanel() {}
-
+export const Dashboard = ({
+  setConfirmPowerModal,
+  setShowUserSettingsModal,
+  setShowPendingUserListModal,
+}) => {
   return (
     <main className='container'>
-      <section className='dashboard hide' id='dashboard'>
+      <section className='dashboard' id='dashboard'>
         <div className='sectionTitle purple'>Dashboard</div>
         <div className='grid'>
-          <div className='box' onClick={confirmPower}>
+          <div className='box' onClick={() => setConfirmPowerModal(x => !x)}>
             <i id='powerON' className='ri-shut-down-line cyan'></i>
             <i id='powerOFF' className='ri-shut-down-line red hide'></i>
           </div>
-          <div className='box bigbox' onClick={userSettingList}>
+          <div
+            className='box bigbox'
+            onClick={() => setShowUserSettingsModal(x => !x)}>
             <i className='ri-user-settings-fill yellow'></i>
             <p className='yellow'>User Settings</p>
           </div>
-          <div className='box bigbox' onClick={userPendingListPanel}>
+          <div
+            className='box bigbox'
+            onClick={() => setShowPendingUserListModal(x => !x)}>
             <i className='ri-user-add-fill red'></i>
             <p className='red'>Pending Requests</p>
             <p className='count'>69</p>

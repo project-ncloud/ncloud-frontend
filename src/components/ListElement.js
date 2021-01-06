@@ -2,6 +2,7 @@ import {useState} from 'react';
 
 export const ListElement = ({title}) => {
   const [checked, setChecked] = useState(false);
+
   return (
     <div className='listElement'>
       <div className='title'>{title}</div>

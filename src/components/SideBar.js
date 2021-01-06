@@ -1,9 +1,6 @@
 import {ListElement} from './ListElement';
 
-export const SideBar = ({setShowConsole}) => {
-  // TODO:
-  const openOverlay = () => {};
-
+export const SideBar = ({setShowConsole, setShowAddPiModal}) => {
   return (
     <div className='sidebar'>
       <div className='mainLogo'>
@@ -14,7 +11,10 @@ export const SideBar = ({setShowConsole}) => {
       <div className='sectionHead'>
         <p className='title'>Servers</p>
         <div className='subActions'>
-          <i className='ri-add-line' onClick={openOverlay} />
+          <i
+            className='ri-add-line'
+            onClick={() => setShowAddPiModal(x => !x)}
+          />
         </div>
       </div>
       <div className='spacer'></div>
