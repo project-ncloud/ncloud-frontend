@@ -1,8 +1,8 @@
 import {useState} from 'react';
 import {AddPiServerPanel} from './components/AddPiServerPanel';
-import {ConfirmPower} from './components/ConfirmPower';
 import {Console} from './components/Console';
 import {Dashboard} from './components/Dashboard';
+import {Dialog} from './components/Dialog';
 import {Modal} from './components/Modal';
 import {PendingUsers} from './components/PendingUsers';
 import {SideBar} from './components/SideBar';
@@ -28,22 +28,28 @@ function App() {
         setShowUserSettingsModal={setShowUserSettingsModal}
         setShowPendingUserListModal={setShowPendingUserListModal}
       />
-      {showConsole && <Console showConsole={showConsole} />}
-      {showAddPiModal && (
-        <Modal action={setShowAddPiModal} panel={<AddPiServerPanel />} />
-      )}
-      {confirmPowerModal && (
-        <Modal action={setConfirmPowerModal} panel={<ConfirmPower />} />
-      )}
-      {showUserSettingsModal && (
-        <Modal
-          action={setShowUserSettingsModal}
-          panel={<UserSettingsPanel />}
-        />
-      )}
-      {showPendingUserListModal && (
-        <Modal action={setShowPendingUserListModal} panel={<PendingUsers />} />
-      )}
+      <Console showConsole={showConsole} />
+      <Modal
+        action={setShowAddPiModal}
+        show={showAddPiModal}
+        panel={<AddPiServerPanel />}
+      />
+
+      <Dialog
+        show={confirmPowerModal}
+        message='This will turn off the PIs'
+        onClose={() => setConfirmPowerModal(x => !x)}
+      />
+      <Modal
+        action={setShowUserSettingsModal}
+        show={showUserSettingsModal}
+        panel={<UserSettingsPanel />}
+      />
+      <Modal
+        action={setShowPendingUserListModal}
+        show={showPendingUserListModal}
+        panel={<PendingUsers />}
+      />
     </>
   );
 }
