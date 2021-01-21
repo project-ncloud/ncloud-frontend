@@ -1,13 +1,26 @@
-import {useState} from 'react';
+import {useContext, useState} from 'react';
+import {GlobalContext} from '../context/Provider';
 
 export const AddPiServerPanel = () => {
+  const {
+    server: {addServer},
+    modal: {toggleAddPiModal},
+  } = useContext(GlobalContext);
+
   const [serverName, setServerName] = useState('');
   const [serverAddress, setServerAddress] = useState('');
   const [checked, setChecked] = useState(true);
 
-  function addServer() {
-    console.log(serverName, serverAddress, checked);
-  }
+  const addServerHandler = () => {
+    if (serverName.trim() && serverAddress.trim()) {
+      addServer({
+        name: serverName,
+        address: serverAddress,
+        auto_start: checked,
+      });
+      toggleAddPiModal();
+    }
+  };
 
   return (
     <>
@@ -62,7 +75,7 @@ export const AddPiServerPanel = () => {
         <div className='row addServerRow' id='addServerStatus'></div>
         <div className='row addServerRow buttonRow'>
           <button className='subBg purple'>Clear</button>
-          <button onClick={addServer}>Add Server</button>
+          <button onClick={addServerHandler}>Add Server</button>
         </div>
         <div className='row addServerRow'></div>
       </div>

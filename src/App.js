@@ -1,52 +1,57 @@
-import {useState} from 'react';
+import {useContext} from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {AddPiServerPanel} from './components/AddPiServerPanel';
 import {Console} from './components/Console';
-import {Dashboard} from './components/Dashboard';
 import {Dialog} from './components/Dialog';
 import {Modal} from './components/Modal';
 import {PendingUsers} from './components/PendingUsers';
-import {SideBar} from './components/SideBar';
 import {UserSettingsPanel} from './components/UserSettingsPanel';
+import {GlobalContext} from './context/Provider';
+import Home from './pages/Home';
+import Login from './pages/Login';
 
 function App() {
-  const [showConsole, setShowConsole] = useState(false);
-  const [showAddPiModal, setShowAddPiModal] = useState(false);
-  const [confirmPowerModal, setConfirmPowerModal] = useState(false);
-  const [showUserSettingsModal, setShowUserSettingsModal] = useState(false);
-  const [showPendingUserListModal, setShowPendingUserListModal] = useState(
-    false
-  );
+  const {modal} = useContext(GlobalContext);
+  const {
+    toggleAddPiModal,
+    toggleConfirmPowerModal,
+    toggleUserSettingsModal,
+    togglePendingUserListModal,
+    state: {
+      showAddPiModal,
+      showConfirmPowerModal,
+      showUserSettingsModal,
+      showPendingUserListModal,
+    },
+  } = modal;
 
   return (
     <>
-      <SideBar
-        setShowConsole={setShowConsole}
-        setShowAddPiModal={setShowAddPiModal}
-      />
-      <Dashboard
-        setConfirmPowerModal={setConfirmPowerModal}
-        setShowUserSettingsModal={setShowUserSettingsModal}
-        setShowPendingUserListModal={setShowPendingUserListModal}
-      />
-      <Console showConsole={showConsole} />
+      <Router>
+        <Switch>
+          <Route exact path='/login' component={Login} />
+          <Route path='/' component={Home} />
+        </Switch>
+      </Router>
+
+      <Console />
       <Modal
-        action={setShowAddPiModal}
+        action={toggleAddPiModal}
         show={showAddPiModal}
         panel={<AddPiServerPanel />}
       />
-
       <Dialog
-        show={confirmPowerModal}
+        show={showConfirmPowerModal}
         message='This will turn off the PIs'
-        onClose={() => setConfirmPowerModal(x => !x)}
+        onClose={() => toggleConfirmPowerModal()}
       />
       <Modal
-        action={setShowUserSettingsModal}
+        action={toggleUserSettingsModal}
         show={showUserSettingsModal}
         panel={<UserSettingsPanel />}
       />
       <Modal
-        action={setShowPendingUserListModal}
+        action={togglePendingUserListModal}
         show={showPendingUserListModal}
         panel={<PendingUsers />}
       />

@@ -1,0 +1,39 @@
+.login__container {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  h2 {
+    letter-spacing: 5px;
+    color: var(--text-color);
+  }
+
+  .links {
+    margin: 0.8rem 0;
+    a {
+      margin-right: 0.5rem;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    & > div,
+    button {
+      margin-top: 1rem;
+    }
+
+    label {
+      color: var(--text-color);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    & > [type='submit'] {
+      justify-self: center;
+    }
+  }
+}

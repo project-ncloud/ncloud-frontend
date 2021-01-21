@@ -1,4 +1,12 @@
-export const Console = ({showConsole}) => {
+import {useContext} from 'react';
+import {GlobalContext} from '../context/Provider';
+
+export const Console = () => {
+  const {modal} = useContext(GlobalContext);
+  const {
+    state: {showConsole},
+  } = modal;
+
   const clearConsole = () => {};
   return (
     <div

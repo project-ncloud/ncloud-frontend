@@ -1,11 +1,14 @@
 import {useState} from 'react';
+import {Link} from 'react-router-dom';
 
 export const ListElement = ({title}) => {
   const [checked, setChecked] = useState(false);
 
   return (
     <div className='listElement'>
-      <div className='title'>{title}</div>
+      <Link to={`/${title}`}>
+        <div className='title'>{title}</div>
+      </Link>
       <div className='bar'>
         <input
           type='checkbox'

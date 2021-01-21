@@ -1,64 +1,34 @@
-export const Dashboard = ({
-  setConfirmPowerModal,
-  setShowUserSettingsModal,
-  setShowPendingUserListModal,
-}) => {
+import {useContext} from 'react';
+import {GlobalContext} from '../context/Provider';
+
+export const Dashboard = () => {
+  const {modal} = useContext(GlobalContext);
+  const {
+    toggleConfirmPowerModal,
+    toggleUserSettingsModal,
+    togglePendingUserListModal,
+  } = modal;
+
   return (
-    <main className='container'>
-      <section className='dashboard' id='dashboard'>
-        <div className='sectionTitle purple'>Dashboard</div>
-        <div className='grid'>
-          <div className='box' onClick={() => setConfirmPowerModal(x => !x)}>
-            <i id='powerON' className='ri-shut-down-line cyan'></i>
-            <i id='powerOFF' className='ri-shut-down-line red hide'></i>
-          </div>
-          <div
-            className='box bigbox'
-            onClick={() => setShowUserSettingsModal(x => !x)}>
-            <i className='ri-user-settings-fill yellow'></i>
-            <p className='yellow'>User Settings</p>
-          </div>
-          <div
-            className='box bigbox'
-            onClick={() => setShowPendingUserListModal(x => !x)}>
-            <i className='ri-user-add-fill red'></i>
-            <p className='red'>Pending Requests</p>
-            <p className='count'>69</p>
-          </div>
+    <section className='dashboard' id='dashboard'>
+      <div className='sectionTitle purple'>Dashboard</div>
+      <div className='grid'>
+        <div className='box' onClick={() => toggleConfirmPowerModal()}>
+          <i id='powerON' className='ri-shut-down-line cyan'></i>
+          <i id='powerOFF' className='ri-shut-down-line red hide'></i>
         </div>
-      </section>
-      <section className='server' id='serverName'>
-        <div className='sectionTitle purple'>Server Info</div>
-        <div className='info'>
-          <div>
-            <i className='ri-server-fill'></i>PiMagi
-          </div>
-          <div>
-            <i className='ri-link'></i>192.168.0.1
-          </div>
+        <div className='box bigbox' onClick={() => toggleUserSettingsModal()}>
+          <i className='ri-user-settings-fill yellow'></i>
+          <p className='yellow'>User Settings</p>
         </div>
-        <div className='sectionTitle purple subtitle'>Hosts</div>
-        <div className='hostgrid'>
-          <div className='info hostinfo'>
-            <div style={{padding: 0, height: '5px'}}></div>
-            <div>
-              <i className='ri-hard-drive-fill'></i>Botai Pi 1
-            </div>
-            <div>
-              <i className='ri-folder-info-line'></i>/pi/desktop/
-            </div>
-            <div className='hostOptions'>
-              <i className='ri-settings-3-fill'></i>
-              <i className='ri-user-add-fill'></i>
-              <i className='ri-user-settings-fill'></i>
-            </div>
-            <div style={{padding: 0, height: '5px'}}></div>
-          </div>
-          <div className='info hostinfo hostAdd'>
-            <i className='ri-add-fill purple'></i>
-          </div>
+        <div
+          className='box bigbox'
+          onClick={() => togglePendingUserListModal()}>
+          <i className='ri-user-add-fill red'></i>
+          <p className='red'>Pending Requests</p>
+          <p className='count'>69</p>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 };
