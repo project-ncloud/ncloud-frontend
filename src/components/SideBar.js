@@ -1,4 +1,4 @@
-import {useContext, useEffect} from 'react';
+import {useContext, useEffect, useRef} from 'react';
 import {ListElement} from './ListElement';
 import {GlobalContext} from '../context/Provider';
 import {Link} from 'react-router-dom';
@@ -11,9 +11,10 @@ export const SideBar = () => {
   } = server;
 
   const {toggleConsole, toggleAddPiModal} = modal;
-
+  const getServersRef = useRef(getServers);
   useEffect(() => {
-    getServers();
+    // getServers();
+    getServersRef.current();
   }, []);
 
   return (

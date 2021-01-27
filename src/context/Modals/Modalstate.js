@@ -6,12 +6,14 @@ import {
   TOGGLE_CONSOLE,
   TOGGLE_PENDING_USER_LIST_MODAL,
   TOGGLE_USER_SETTINGS_MODAL,
+  TOGGLE_ADD_HOST_MODAL,
 } from '../types';
 
 const ModalState = () => {
   const initialState = {
     showConsole: false,
     showAddPiModal: false,
+    showAddHostModal: false,
     showConfirmPowerModal: false,
     showUserSettingsModal: false,
     showPendingUserListModal: false,
@@ -21,6 +23,7 @@ const ModalState = () => {
 
   const toggleConsole = () => dispatch({type: TOGGLE_CONSOLE});
   const toggleAddPiModal = () => dispatch({type: TOGGLE_ADD_PI_MODAL});
+  const toggleAddHostModal = () => dispatch({type: TOGGLE_ADD_HOST_MODAL});
   const toggleConfirmPowerModal = () =>
     dispatch({type: TOGGLE_CONFIRM_POWER_MODAL});
   const toggleUserSettingsModal = () =>
@@ -32,6 +35,7 @@ const ModalState = () => {
     state,
     toggleConsole,
     toggleAddPiModal,
+    toggleAddHostModal,
     toggleConfirmPowerModal,
     toggleUserSettingsModal,
     togglePendingUserListModal,

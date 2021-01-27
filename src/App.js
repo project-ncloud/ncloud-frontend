@@ -9,6 +9,7 @@ import {UserSettingsPanel} from './components/UserSettingsPanel';
 import {GlobalContext} from './context/Provider';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import {AddHostPanel} from './components/AddHostPanel';
 
 function App() {
   const {modal} = useContext(GlobalContext);
@@ -17,8 +18,10 @@ function App() {
     toggleConfirmPowerModal,
     toggleUserSettingsModal,
     togglePendingUserListModal,
+    toggleAddHostModal,
     state: {
       showAddPiModal,
+      showAddHostModal,
       showConfirmPowerModal,
       showUserSettingsModal,
       showPendingUserListModal,
@@ -54,6 +57,11 @@ function App() {
         action={togglePendingUserListModal}
         show={showPendingUserListModal}
         panel={<PendingUsers />}
+      />
+      <Modal
+        action={toggleAddHostModal}
+        show={showAddHostModal}
+        panel={<AddHostPanel />}
       />
     </>
   );

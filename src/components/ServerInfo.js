@@ -4,6 +4,8 @@ import {GlobalContext} from '../context/Provider';
 const ServerInfo = ({server: {name, address}}) => {
   const {
     server: {deleteServer},
+    modal: {toggleAddHostModal},
+    host: {setServerName},
   } = useContext(GlobalContext);
 
   return (
@@ -20,6 +22,13 @@ const ServerInfo = ({server: {name, address}}) => {
         </div>
         {/* TODO: will style later */}
         <button onClick={() => deleteServer({name, address})}>Delete</button>
+        <button
+          onClick={() => {
+            setServerName(name);
+            toggleAddHostModal();
+          }}>
+          Add Host
+        </button>
       </div>
     </>
   );
