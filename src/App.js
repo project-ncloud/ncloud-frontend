@@ -10,6 +10,7 @@ import {GlobalContext} from './context/Provider';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import {AddHostPanel} from './components/AddHostPanel';
+import Register from './pages/Register';
 
 function App() {
   const {modal} = useContext(GlobalContext);
@@ -33,6 +34,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Register} />
           <Route path='/' component={Home} />
         </Switch>
       </Router>

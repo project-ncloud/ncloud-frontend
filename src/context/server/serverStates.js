@@ -20,7 +20,6 @@ const ServerState = () => {
   const addServer = async data => {
     try {
       const res = await axios.post(`/server/`, data);
-      console.log(res.data);
       if (res.data.status) {
         dispatch({type: ADD_SERVER, payload: data});
         return;
