@@ -1,5 +1,7 @@
 export const ADD_SERVER = 'ADD_SERVER';
+export const GET_SERVERS = 'GET_SERVERS';
 export const REMOVE_SERVER = 'REMOVE_SERVER';
+export const SERVER_ERROR = 'REMOVE_SERVER';
 
 export const TOGGLE_CONSOLE = 'TOGGLE_CONSOLE';
 export const TOGGLE_ADD_PI_MODAL = 'TOGGLE_ADD_PI_MODAL';

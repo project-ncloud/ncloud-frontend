@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import {useContext, useEffect} from 'react';
 import {ListElement} from './ListElement';
 import {GlobalContext} from '../context/Provider';
 import {Link} from 'react-router-dom';
@@ -7,9 +7,14 @@ export const SideBar = () => {
   const {server, modal} = useContext(GlobalContext);
   const {
     state: {servers},
+    getServers,
   } = server;
 
   const {toggleConsole, toggleAddPiModal} = modal;
+
+  useEffect(() => {
+    getServers();
+  }, []);
 
   return (
     <div className='sidebar'>
