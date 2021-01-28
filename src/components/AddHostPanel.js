@@ -7,6 +7,7 @@ export const AddHostPanel = () => {
       addHost,
       state: {temp_Servername},
     },
+    modal: {toggleAddHostModal},
   } = useContext(GlobalContext);
 
   const [hostName, setHostName] = useState('');
@@ -22,6 +23,7 @@ export const AddHostPanel = () => {
       public: hostPublic,
       server_name: temp_Servername,
     });
+    toggleAddHostModal();
   };
 
   return (

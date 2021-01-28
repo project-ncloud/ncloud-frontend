@@ -1,7 +1,6 @@
 const HostInfo = ({host: {name, path}}) => {
   return (
     <>
-      <div className='sectionTitle purple subtitle'>Hosts</div>
       <div className='hostgrid'>
         <div className='info hostinfo'>
           <div style={{padding: 0, height: '5px'}}></div>
@@ -19,9 +18,6 @@ const HostInfo = ({host: {name, path}}) => {
             <i className='ri-user-settings-fill'></i>
           </div>
           <div style={{padding: 0, height: '5px'}}></div>
-        </div>
-        <div className='info hostinfo hostAdd'>
-          <i className='ri-add-fill purple'></i>
         </div>
       </div>
     </>

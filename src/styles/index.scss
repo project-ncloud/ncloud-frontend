@@ -532,6 +532,7 @@ input[type='checkbox'] {
   }
 
   .server {
+    margin: 1.5rem 0;
     .info {
       max-width: 50%;
       height: auto;
@@ -620,9 +621,10 @@ input[type='checkbox'] {
     display: grid;
     align-items: flex-start;
     justify-content: flex-start;
-    grid-template-columns: repeat(auto-fit, minmax(0px, 350px));
+    grid-template-columns: repeat(auto-fit, minmax(0, 350px));
     grid-gap: 20px;
     grid-row: 350px;
+    padding: 0.2rem 0;
   }
 }
 

@@ -1,7 +1,8 @@
 import {useContext} from 'react';
 import {GlobalContext} from '../context/Provider';
+import HostInfo from './HostInfo';
 
-const ServerInfo = ({server: {name, address}}) => {
+const ServerInfo = ({server: {name, address, hosts}}) => {
   const {
     server: {deleteServer},
     modal: {toggleAddHostModal},
@@ -23,6 +24,7 @@ const ServerInfo = ({server: {name, address}}) => {
         {/* TODO: will style later */}
         <button onClick={() => deleteServer({name, address})}>Delete</button>
         <button
+          style={{marginLeft: '5px'}}
           onClick={() => {
             setServerName(name);
             toggleAddHostModal();
@@ -30,6 +32,10 @@ const ServerInfo = ({server: {name, address}}) => {
           Add Host
         </button>
       </div>
+      <div className='sectionTitle purple subtitle'>Hosts</div>
+      {hosts.map(host => (
+        <HostInfo host={host} />
+      ))}
     </>
   );
 };

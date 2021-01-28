@@ -2,6 +2,7 @@ import {createContext} from 'react';
 import HostState from './Host/hostStates';
 import ModalState from './Modals/Modalstate';
 import ServerState from './server/serverStates';
+import UserState from './User/userStates';
 
 export const GlobalContext = createContext();
 
@@ -10,6 +11,7 @@ export const GlobalProvider = ({children}) => {
     server: ServerState(),
     modal: ModalState(),
     host: HostState(),
+    user: UserState(),
   };
 
   return (

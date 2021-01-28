@@ -6,7 +6,27 @@ import serverReducer from './serverReducer';
 const ServerState = () => {
   const initialState = {
     servers: [
-      // { name: "fake_server", address: "192.168.0.1", auto_start: false },
+      {
+        name: 'fake_server',
+        address: '192.168.0.1',
+        auto_start: false,
+        hosts: [
+          {
+            name: 'fake_host',
+            path: '/home/fake_user/host_dir',
+            writable: true,
+            public: false,
+            server_name: 'Server1',
+          },
+          {
+            name: 'fake_host 2',
+            path: '/home/fake_user2/host_dir',
+            writable: true,
+            public: false,
+            server_name: 'Server1',
+          },
+        ],
+      },
     ],
     serverErrors: [
       // {

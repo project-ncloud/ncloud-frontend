@@ -12,3 +12,6 @@ export const TOGGLE_PENDING_USER_LIST_MODAL = 'TOGGLE_PENDING_USER_LIST_MODAL';
 
 export const ADD_HOST = 'ADD_HOST';
 export const SET_SERVER_NAME = 'SET_SERVER_NAME';
+
+export const LOGIN = 'LOGIN';
+export const LOGIN_ADMIN = 'LOGIN_ADMIN';

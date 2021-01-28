@@ -1,5 +1,6 @@
 import {useContext} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {AddHostPanel} from './components/AddHostPanel';
 import {AddPiServerPanel} from './components/AddPiServerPanel';
 import {Console} from './components/Console';
 import {Dialog} from './components/Dialog';
@@ -9,7 +10,6 @@ import {UserSettingsPanel} from './components/UserSettingsPanel';
 import {GlobalContext} from './context/Provider';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import {AddHostPanel} from './components/AddHostPanel';
 import Register from './pages/Register';
 
 function App() {

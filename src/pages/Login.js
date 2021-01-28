@@ -1,13 +1,19 @@
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import {Link} from 'react-router-dom';
+import {GlobalContext} from '../context/Provider';
 import '../styles/login.scss';
 
 const Login = () => {
+  const {
+    user: {login},
+  } = useContext(GlobalContext);
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const submitHandler = e => {
     e.preventDefault();
+    login({username, password});
   };
 
   return (
@@ -38,8 +44,7 @@ const Login = () => {
       </form>
 
       <div className='links'>
-        <Link to='/register'>Register</Link>
-        <Link to='/admin'>Admin</Link>
+        <Link to='/register'>Register here</Link>
       </div>
     </div>
   );

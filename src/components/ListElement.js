@@ -6,7 +6,7 @@ export const ListElement = ({title}) => {
 
   return (
     <div className='listElement'>
-      <Link to={`/${title}`}>
+      <Link to={`/server/${title}`}>
         <div className='title'>{title}</div>
       </Link>
       <div className='bar'>

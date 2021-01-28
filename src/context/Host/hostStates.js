@@ -6,14 +6,15 @@ import hostReducer from './HostReducer';
 const HostState = () => {
   const initialState = {
     temp_Servername: null,
+    success: false,
     hosts: [
-      {
-        name: 'fake_host',
-        path: '/home/fake_user/host_dir',
-        writable: true,
-        public: false,
-        server_name: 'Server1',
-      },
+      // {
+      //   name: 'fake_host',
+      //   path: '/home/fake_user/host_dir',
+      //   writable: true,
+      //   public: false,
+      //   server_name: 'Server1',
+      // },
     ],
   };
 
@@ -25,7 +26,7 @@ const HostState = () => {
       dispatch({type: ADD_HOST, payload: data});
       return;
     }
-    console.error('Could no add host!');
+    console.error('Could not add host!');
   };
 
   // Seting server name before adding host
