@@ -1,10 +1,33 @@
-import {ADD_SERVER, GET_SERVERS, REMOVE_SERVER, SERVER_ERROR} from '../types';
+import {
+  ADD_HOST_TO_SERVER,
+  ADD_SERVER,
+  GET_SERVERS,
+  REMOVE_SERVER,
+  SERVER_ERROR,
+  DELETE_HOST,
+} from '../types';
 
 const serverReducer = (state, action) => {
   switch (action.type) {
     case ADD_SERVER:
-    case GET_SERVERS:
       return {...state, servers: [...state.servers, ...action.payload]};
+
+    case GET_SERVERS:
+      return {...state, servers: action.payload};
+
+    case DELETE_HOST:
+      return {...state};
+
+    case ADD_HOST_TO_SERVER:
+      console.log(
+        state.servers.filter(s => s.name === action.payload.server_name)
+      );
+      return {
+        ...state,
+        servers: [
+          ...state.servers.filter(s => s.name === action.payload.server_name),
+        ],
+      };
 
     case SERVER_ERROR:
       return {

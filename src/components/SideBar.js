@@ -36,7 +36,11 @@ export const SideBar = () => {
 
       <div className='list'>
         {servers.map(server => (
-          <ListElement key={server.name} title={server.name} />
+          <ListElement
+            key={server.name}
+            title={server.name}
+            address={server.address}
+          />
         ))}
       </div>
 

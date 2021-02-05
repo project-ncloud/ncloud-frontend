@@ -1,32 +1,26 @@
 import axios from 'axios';
 import {useReducer} from 'react';
-import {ADD_SERVER, GET_SERVERS, REMOVE_SERVER} from '../types';
+import {ADD_SERVER, GET_SERVERS, REMOVE_SERVER, TOGGLE_POWER} from '../types';
 import serverReducer from './serverReducer';
 
 const ServerState = () => {
   const initialState = {
+    is_running: null,
     servers: [
-      {
-        name: 'fake_server',
-        address: '192.168.0.1',
-        auto_start: false,
-        hosts: [
-          {
-            name: 'fake_host',
-            path: '/home/fake_user/host_dir',
-            writable: true,
-            public: false,
-            server_name: 'Server1',
-          },
-          {
-            name: 'fake_host 2',
-            path: '/home/fake_user2/host_dir',
-            writable: true,
-            public: false,
-            server_name: 'Server1',
-          },
-        ],
-      },
+      // {
+      //   name: 'fake_server',
+      //   address: '192.168.0.1',
+      //   auto_start: false,
+      //   hosts: [
+      //     {
+      //       name: 'fake_host',
+      //       path: '/home/fake_user/host_dir',
+      //       writable: true,
+      //       public: false,
+      //       server_name: 'Server1',
+      //     },
+      //   ],
+      // },
     ],
     serverErrors: [
       // {
@@ -54,6 +48,17 @@ const ServerState = () => {
     }
   };
 
+  const addHostToServer = async data => {
+    const res = await axios.post('/server/host/', data);
+    if (res.data.status) {
+      //res.data.status
+      getServers();
+      // dispatch({type: ADD_HOST_TO_SERVER, payload: data});
+      return;
+    }
+    console.error('Could not add host!');
+  };
+
   const getServers = async () => {
     try {
       const {data} = await axios.get('/servers/');
@@ -63,9 +68,31 @@ const ServerState = () => {
     }
   };
 
+  const deleteHost = async data => {
+    console.log(data);
+    const res = await axios.delete('/server/host/', {data});
+    if (res.data.status) {
+      getServers();
+      return;
+    }
+    console.error('Could not delete host');
+  };
+
   const deleteServer = async data => {
     // TODO: add delete request
     dispatch({type: REMOVE_SERVER, payload: data});
+  };
+
+  const togglePower = async (address, action) => {
+    const res = await axios.post('/server/control/', {
+      address,
+      action,
+    });
+  };
+
+  const getServerStatus = async address => {
+    const {data} = await axios.get(`/server/control/${address}`);
+    return data;
   };
 
   return {
@@ -73,6 +100,10 @@ const ServerState = () => {
     addServer,
     deleteServer,
     getServers,
+    addHostToServer,
+    deleteHost,
+    getServerStatus,
+    togglePower,
   };
 };
 export default ServerState;

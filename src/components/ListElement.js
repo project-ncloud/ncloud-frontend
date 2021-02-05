@@ -1,8 +1,25 @@
-import {useState} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
 import {Link} from 'react-router-dom';
+import {GlobalContext} from '../context/Provider';
 
-export const ListElement = ({title}) => {
+export const ListElement = ({title, address}) => {
+  const {
+    server: {getServerStatus, togglePower},
+  } = useContext(GlobalContext);
+
   const [checked, setChecked] = useState(false);
+
+  const getServerStatusRef = useRef(getServerStatus);
+  useEffect(() => {
+    getServerStatusRef
+      .current(address)
+      .then(data => setChecked(data.is_running));
+  }, [address]);
+
+  const handleTogglePower = () => {
+    togglePower(address, !checked);
+    setChecked(!checked);
+  };
 
   return (
     <div className='listElement'>
@@ -15,7 +32,7 @@ export const ListElement = ({title}) => {
           id={title}
           className='checkbox'
           checked={checked}
-          onChange={() => setChecked(!checked)}
+          onChange={() => handleTogglePower()}
         />
         <label htmlFor={title} className='toggle'>
           <i className='ri-shut-down-line btnON'></i>

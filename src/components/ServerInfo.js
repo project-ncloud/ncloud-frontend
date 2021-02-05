@@ -22,20 +22,24 @@ const ServerInfo = ({server: {name, address, hosts}}) => {
           {address}
         </div>
         {/* TODO: will style later */}
-        <button onClick={() => deleteServer({name, address})}>Delete</button>
-        <button
-          style={{marginLeft: '5px'}}
+        <button onClick={() => deleteServer({name, address})}>
+          <i className='ri-delete-bin-line'></i>
+        </button>
+      </div>
+      <div className='sectionTitle purple subtitle'>Hosts</div>
+      <div className='hostgrid'>
+        {hosts.map(host => (
+          <HostInfo key={host.name} server_name={name} host={host} />
+        ))}
+        <div
+          className='info hostinfo hostAdd'
           onClick={() => {
             setServerName(name);
             toggleAddHostModal();
           }}>
-          Add Host
-        </button>
+          <i className='ri-add-fill purple'></i>
+        </div>
       </div>
-      <div className='sectionTitle purple subtitle'>Hosts</div>
-      {hosts.map(host => (
-        <HostInfo host={host} />
-      ))}
     </>
   );
 };

@@ -4,9 +4,9 @@ import {GlobalContext} from '../context/Provider';
 export const AddHostPanel = () => {
   const {
     host: {
-      addHost,
       state: {temp_Servername},
     },
+    server: {addHostToServer},
     modal: {toggleAddHostModal},
   } = useContext(GlobalContext);
 
@@ -16,7 +16,7 @@ export const AddHostPanel = () => {
   const [hostPublic, setHostPublic] = useState(false);
 
   const addHostHandler = () => {
-    addHost({
+    addHostToServer({
       name: hostName,
       path,
       writable,
