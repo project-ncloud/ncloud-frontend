@@ -4,7 +4,11 @@ import {GlobalContext} from '../context/Provider';
 
 export const ListElement = ({title, address}) => {
   const {
-    server: {getServerStatus, togglePower},
+    server: {
+      getServerStatus,
+      togglePower,
+      state: {powerToggleStatus},
+    },
   } = useContext(GlobalContext);
 
   const [checked, setChecked] = useState(false);
@@ -18,7 +22,7 @@ export const ListElement = ({title, address}) => {
 
   const handleTogglePower = () => {
     togglePower(address, !checked);
-    setChecked(!checked);
+    if (powerToggleStatus) setChecked(!checked);
   };
 
   return (
@@ -32,7 +36,7 @@ export const ListElement = ({title, address}) => {
           id={title}
           className='checkbox'
           checked={checked}
-          onChange={() => handleTogglePower()}
+          onChange={handleTogglePower}
         />
         <label htmlFor={title} className='toggle'>
           <i className='ri-shut-down-line btnON'></i>

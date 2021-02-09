@@ -1,6 +1,7 @@
 import {useContext} from 'react';
 import {GlobalContext} from '../context/Provider';
 import HostInfo from './HostInfo';
+import {useHistory} from 'react-router-dom';
 
 const ServerInfo = ({server: {name, address, hosts}}) => {
   const {
@@ -8,6 +9,12 @@ const ServerInfo = ({server: {name, address, hosts}}) => {
     modal: {toggleAddHostModal},
     host: {setServerName},
   } = useContext(GlobalContext);
+  const history = useHistory();
+
+  function handleDelete() {
+    deleteServer({name, address});
+    history.push('/');
+  }
 
   return (
     <>
@@ -22,7 +29,7 @@ const ServerInfo = ({server: {name, address, hosts}}) => {
           {address}
         </div>
         {/* TODO: will style later */}
-        <button onClick={() => deleteServer({name, address})}>
+        <button onClick={handleDelete}>
           <i className='ri-delete-bin-line'></i>
         </button>
       </div>

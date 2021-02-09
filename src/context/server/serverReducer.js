@@ -2,15 +2,16 @@ import {
   ADD_HOST_TO_SERVER,
   ADD_SERVER,
   GET_SERVERS,
-  REMOVE_SERVER,
+  DELETE_SERVER,
   SERVER_ERROR,
   DELETE_HOST,
+  TOGGLE_POWER,
 } from '../types';
 
 const serverReducer = (state, action) => {
   switch (action.type) {
     case ADD_SERVER:
-      return {...state, servers: [...state.servers, ...action.payload]};
+      return {...state, servers: [...state.servers, action.payload]};
 
     case GET_SERVERS:
       return {...state, servers: action.payload};
@@ -35,13 +36,16 @@ const serverReducer = (state, action) => {
         serverErrors: [...state.serverErrors, action.payload],
       };
 
-    case REMOVE_SERVER:
+    case DELETE_SERVER:
       return {
         ...state,
         servers: state.servers.filter(
           server => server.address !== action.payload.address
         ),
       };
+
+    case TOGGLE_POWER:
+      return {...state, powerToggleStatus: action.payload};
 
     default:
       return state;

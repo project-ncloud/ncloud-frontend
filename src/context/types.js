@@ -1,7 +1,7 @@
 export const ADD_SERVER = 'ADD_SERVER';
 export const GET_SERVERS = 'GET_SERVERS';
-export const REMOVE_SERVER = 'REMOVE_SERVER';
-export const SERVER_ERROR = 'REMOVE_SERVER';
+export const DELETE_SERVER = 'DELETE_SERVER';
+export const SERVER_ERROR = 'SERVER_ERROR';
 
 export const TOGGLE_CONSOLE = 'TOGGLE_CONSOLE';
 export const TOGGLE_ADD_PI_MODAL = 'TOGGLE_ADD_PI_MODAL';
@@ -14,8 +14,9 @@ export const ADD_HOST = 'ADD_HOST';
 export const DELETE_HOST = 'DELETE_HOST';
 export const SET_SERVER_NAME = 'SET_SERVER_NAME';
 export const ADD_HOST_TO_SERVER = 'ADD_HOST_TO_SERVER';
+export const TOGGLE_POWER = 'TOGGLE_POWER';
 
 export const LOGIN = 'LOGIN';
 export const LOGIN_ADMIN = 'LOGIN_ADMIN';
 
-export const TOGGLE_POWER = 'TOGGLE_POWER';
+export const GET_USER = 'GET_USER';

@@ -1,11 +1,12 @@
 import axios from 'axios';
 import {useReducer} from 'react';
-import {ADD_SERVER, GET_SERVERS, REMOVE_SERVER, TOGGLE_POWER} from '../types';
+import {ADD_SERVER, DELETE_SERVER, GET_SERVERS, TOGGLE_POWER} from '../types';
 import serverReducer from './serverReducer';
 
 const ServerState = () => {
   const initialState = {
     is_running: null,
+    powerToggleStatus: null,
     servers: [
       // {
       //   name: 'fake_server',
@@ -62,6 +63,7 @@ const ServerState = () => {
   const getServers = async () => {
     try {
       const {data} = await axios.get('/servers/');
+      console.log(data);
       dispatch({type: GET_SERVERS, payload: data});
     } catch (err) {
       console.error(err);
@@ -79,8 +81,16 @@ const ServerState = () => {
   };
 
   const deleteServer = async data => {
-    // TODO: add delete request
-    dispatch({type: REMOVE_SERVER, payload: data});
+    const res = await axios.delete('/server/', {
+      data,
+    });
+
+    if (res.data.status) {
+      dispatch({type: DELETE_SERVER, payload: data});
+      return;
+    }
+
+    console.error('Failed to delete server!');
   };
 
   const togglePower = async (address, action) => {
@@ -88,6 +98,11 @@ const ServerState = () => {
       address,
       action,
     });
+    if (res.data.status) {
+      dispatch({type: TOGGLE_POWER, payload: res.data.status});
+      return;
+    }
+    dispatch({type: TOGGLE_POWER, payload: res.data.status});
   };
 
   const getServerStatus = async address => {

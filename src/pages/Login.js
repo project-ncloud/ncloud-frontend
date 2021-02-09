@@ -1,12 +1,17 @@
 import {useContext, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {GlobalContext} from '../context/Provider';
+import {useHistory} from 'react-router-dom';
 import '../styles/login.scss';
 
 const Login = () => {
   const {
-    user: {login},
+    user: {
+      login,
+      state: {manager, success},
+    },
   } = useContext(GlobalContext);
+  const history = useHistory();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -14,6 +19,7 @@ const Login = () => {
   const submitHandler = e => {
     e.preventDefault();
     login({username, password});
+    history.push('/');
   };
 
   return (

@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import {useContext, useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {AddHostPanel} from './components/AddHostPanel';
 import {AddPiServerPanel} from './components/AddPiServerPanel';
@@ -11,9 +11,13 @@ import {GlobalContext} from './context/Provider';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import User from './pages/User';
 
 function App() {
-  const {modal} = useContext(GlobalContext);
+  const {
+    modal,
+    user: {getUserInfo},
+  } = useContext(GlobalContext);
   const {
     toggleAddPiModal,
     toggleConfirmPowerModal,
@@ -29,12 +33,17 @@ function App() {
     },
   } = modal;
 
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
   return (
     <>
       <Router>
         <Switch>
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
+          <Route exact path='/user' component={User} />
           <Route path='/' component={Home} />
         </Switch>
       </Router>
